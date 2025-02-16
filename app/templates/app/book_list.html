@@ -1,0 +1,11 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% block content %}
+    <h1>Books List</h1>
+    <ul>
+        {% for book in books %}
+            <li><a href="{% url 'book:detail' book.id %}">{{ book.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
