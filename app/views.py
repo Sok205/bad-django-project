@@ -1,10 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book
+from django.views.generic import ListView,DetailView
 
-def book_list(request):
-    books = Book.all()
-    return render(request, "app/book_list.html", {"books": books})
+#Changed to generic views to simplify the code
+class BookListView(ListView):
+    model = Book
+    template_name = "app/book_list.html"
+    context_object_name = "books"
 
-def book_detail(request, book_id):
-    book = get_object_or_404(Book, id=book_id)
-    return render(request, "books/book_detail.html", {"book": book})
+class BookDetailView(DetailView):
+    model = Book
+    template_name = "app/book_detail.html"
+    context_object_name = "book"
